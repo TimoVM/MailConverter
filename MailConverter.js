@@ -40,7 +40,7 @@ function sanitizeInput() {
 
 function ConvertValueToCoordinates(value) {
     var xCoordinate = (parseInt("0x" + value, 16) % 16) * 8
-    var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16) / 16
+    var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16)
     return [xCoordinate, yCoordinate]
 }
 
@@ -58,12 +58,12 @@ function HookOutput(finalMailArray) {
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
             tag.appendChild(pTag)
-                (finalMail[0].slice(rowCount * 16, 16)).forEach(value => {
-                    var childSpan = document.createElement("span")
-                    childSpan.setAttribute("class", "gscfont")
-                    var coordinates = ConvertValueToCoordinates(value)
-                    childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -" + coordinates[0] + "px -" + coordinates[0] + "px;")
-                    pTag.appendChild(childSpan);
+            (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
+                var childSpan = document.createElement("span")
+                childSpan.setAttribute("class", "gscfont")
+                var coordinates = ConvertValueToCoordinates(value)
+                childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
+                pTag.appendChild(childSpan);
                 });
         }
     });
