@@ -50,7 +50,7 @@ function HookOutput(finalMailArray) {
     finalMailArray.forEach((finalMail, idx) => {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail " + (idx + 1).toString());
-        var tag2 = document.createElement("h2");
+        var tag2 = document.createElement("p");
         var text2 = document.createTextNode("Button presses required: " + finalMail[1].toString() + " | checksum: " + finalMail[2].toString(16).padStart(2, '0').toUpperCase());
         element.appendChild(tag);
         tag.appendChild(text);
@@ -59,7 +59,7 @@ function HookOutput(finalMailArray) {
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
-            tag.appendChild(pTag);
+            tag2.appendChild(pTag);
             (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
                 var childSpan = document.createElement("span")
                 childSpan.setAttribute("class", "gscfont")
