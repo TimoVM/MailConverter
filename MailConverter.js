@@ -50,19 +50,24 @@ function HookOutput(finalMailArray) {
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
+        var firstRow = finalMail[0].slice(0,16)
+        var secondRow = finalMail[0].slice(16,16)
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail "+ (idx+1).toString());
+        element.appendChild(tag);
         tag.appendChild(text);
-        element.appendChild(tag);        
-        finalMail[0].forEach(value, idx => {
-            var child = document.createElement("p");
-            var childSpan = document.createElement("span")
-            childSpan.setAttribute("class","gscfont")
-            var coordinates = ConvertValueToCoordinates(value)
-            childSpan.setAttribute("style","background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -"+coordinates[0]+"px -"+coordinates[0]+"px;")
-            element.appendChild(child);
-            child.appendChild(childSpan);
-        });    
+        for (let rowCount = 0; rowCount < 2; rowCount++) {
+            var pTag = document.createElement("p")
+            pTag.setAttribute("class",finalMail[0][rowCount])
+            tag.appendChild(pTag)
+            (finalMail[0].slice(rowCount*16,16)).forEach(value => {
+                var childSpan = document.createElement("span")
+                childSpan.setAttribute("class","gscfont")
+                var coordinates = ConvertValueToCoordinates(value)
+                childSpan.setAttribute("style","background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -"+coordinates[0]+"px -"+coordinates[0]+"px;")
+                pTag.appendChild(childSpan);
+            }); 
+        } 
     });
 }
 
