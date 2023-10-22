@@ -1,9 +1,5 @@
-var combinedDictFilePath = './MailConvCombinedDict.json'
-var distanceDictFilePath = './MailConvDistanceDict.json'
-var combinedDict
-var distanceDict
-import combinedDict from "combinedDictFilePath" assert { type: 'json' }
-import distanceDict from "distanceDictFilePath" assert { type: 'json' }
+import combinedDict from './MailConvCombinedDict.json' assert { type: 'json' }
+import distanceDict from './MailConvDistanceDict.json' assert { type: 'json' }
 
 function initiateMailAssembly(nextByteCombinations) {
     var minPossibilities = {};
