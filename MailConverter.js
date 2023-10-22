@@ -135,3 +135,10 @@ function convertCodes() {
     });
     HookOutput(finalMailArray)
 }
+
+function changeVersion() {
+    var selectedLanguage = document.getElementById("language")
+    var selectedVersion = document.getElementById("version")
+    selectedVersion.value = selectedLanguage.value
+
+}
