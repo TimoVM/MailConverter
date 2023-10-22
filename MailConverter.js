@@ -34,7 +34,7 @@ function iterateMailAssembly(nextByteCombinations, possibleMailList) {
 function sanitizeInput() {
     var textBox = document.getElementById("Input")
     var input = textBox.value
-    input = input.replace(/[^0-9a-f-A-F]/g, "");
+    input = input.replace(/[^0-9a-f-A-F]/g, "").toUpperCase();
     textBox.value = input
 }
 
@@ -57,7 +57,7 @@ function HookOutput(finalMailArray) {
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
-            tag.appendChild(pTag)
+            tag.appendChild(pTag);
             (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
                 var childSpan = document.createElement("span")
                 childSpan.setAttribute("class", "gscfont")
