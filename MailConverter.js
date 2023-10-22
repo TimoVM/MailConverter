@@ -38,10 +38,22 @@ function sanitizeInput() {
     textBox.value = input
 }
 
-function ConvertValueToCoordinates(value) {
+function ConvertValueToKoreanCoordinates(value) {
     var xCoordinate = (parseInt("0x" + value, 16) % 16) * 16
     var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16) * 2
     return [xCoordinate, yCoordinate]
+}
+
+function ConvertValueToCoordinates(value) {
+    var xCoordinate = (parseInt("0x" + value, 16) % 16) * 16
+    var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16)
+    return [xCoordinate, yCoordinate]
+}
+
+function ConvertChecksumToCoordinates(checksum) {
+    var lowCoordinate = ConvertValueToCoordinates((parseInt("0x" + value, 16) % 16) + 0xF6)
+    var highCoordinate = ConvertValueToCoordinates((parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16)/16 + 0xF6)
+    return [highCoordinate, lowCoordinate]
 }
 
 function HookOutput(finalMailArray) {
@@ -51,19 +63,28 @@ function HookOutput(finalMailArray) {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail " + (idx + 1).toString());
         var tag2 = document.createElement("p");
-        var text2 = document.createTextNode("Button presses required: " + finalMail[2].toString() + " | checksum: " + finalMail[1].toString(16).padStart(2, '0').toUpperCase());
+        var text2 = document.createTextNode("Button presses required: " + finalMail[2].toString() + " | checksum: ");
         element.appendChild(tag);
         tag.appendChild(text);
         element.appendChild(tag2);
         tag2.appendChild(text2);
+        var checksumCoordinates = ConvertChecksumToCoordinates(finalMail[1])
+        var checksumSpan = document.createElement("span")
+        checksumSpan.setAttribute("class", "gscfont")
+        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSChecksum.png) -" + checksumCoordinates[0][0] + "px -" + checksumCoordinates[0][1] + "px;")
+        tag2.appendChild(checksumSpan);
+        var checksumSpan = document.createElement("span")
+        checksumSpan.setAttribute("class", "gscfont")
+        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSChecksum.png) -" + checksumCoordinates[1][0] + "px -" + checksumCoordinates[1][1] + "px;")
+        tag2.appendChild(checksumSpan);
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
             tag2.appendChild(pTag);
             (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
                 var childSpan = document.createElement("span")
-                childSpan.setAttribute("class", "gscfont")
-                var coordinates = ConvertValueToCoordinates(value)
+                childSpan.setAttribute("class", "korgscfont")
+                var coordinates = ConvertValueToKoreanCoordinates(value)
                 childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 pTag.appendChild(childSpan);
                 });
