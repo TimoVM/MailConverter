@@ -51,7 +51,7 @@ function HookOutput(finalMailArray) {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail " + (idx + 1).toString());
         var tag2 = document.createElement("h2");
-        var text2 = document.createTextNode("Button presses required: " + finalMail[1].toString() + " | checksum: " + finalMail[2]..toString(16).padStart(2, '0').toUpperCase());
+        var text2 = document.createTextNode("Button presses required: " + finalMail[1].toString() + " | checksum: " + finalMail[2].toString(16).padStart(2, '0').toUpperCase());
         element.appendChild(tag);
         tag.appendChild(text);
         element.appendChild(tag2);
