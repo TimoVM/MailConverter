@@ -8,7 +8,7 @@ function loadJSONFromURL(url) {
 function initiateMailAssembly(nextByteCombinations) {
     var minPossibilities = {};
     nextByteCombinations.forEach(nextByteCombination => {
-        var startingChar = "ㄱ";
+        var startingChar = "00";
         var linkCost = distanceDict[startingChar+nextByteCombination[0]] + distanceDict[nextByteCombination[0] + nextByteCombination[1]] + 2;
         if ((!isNaN(linkCost)) && (!(nextByteCombination[1] in minPossibilities) || ((nextByteCombination[1] in minPossibilities) && (linkCost < minPossibilities[nextByteCombination[1]][1]))))
         {
