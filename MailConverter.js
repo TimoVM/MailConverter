@@ -1,5 +1,9 @@
-import combinedDict from './MailConvCombinedDict.json' assert { type: 'json' }
-import distanceDict from './MailConvDistanceDict.json' assert { type: 'json' }
+function loadJSONFromURL(url) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, false);
+    request.send(null);
+    return JSON.parse(request.responseText);
+}
 
 function initiateMailAssembly(nextByteCombinations) {
     var minPossibilities = {};
@@ -47,6 +51,8 @@ function HookOutput(finalMailArray) {
 }
 
 function convertCodes() {
+combinedDict = loadJSONFromURL('./MailConvCombinedDict.json')
+distanceDict = loadJSONFromURL('./MailConvDistanceDict.json')
 var textBox = document.getElementById("Input")
 var input = textBox.value
 if (input.length%2 != 0) {
