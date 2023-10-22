@@ -45,6 +45,10 @@ function HookOutput(finalMailArray) {
     finalMailArray.forEach((finalMail, idx) => {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail "+ (idx+1).toString());
+        var child = tag.createElement("p1");
+        var childSpan = child.createElement("span")
+        childSpan.setAttribute("class","gscfont")
+        childSpan.setAttribute("style","background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -0px -0px;")
         tag.appendChild(text);
         element.appendChild(tag);
     });
