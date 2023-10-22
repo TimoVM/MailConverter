@@ -1,3 +1,10 @@
+var combinedDictFilePath = './MailConvCombinedDict.json'
+var distanceDictFilePath = './MailConvDistanceDict.json'
+var combinedDict
+var distanceDict
+import combinedDict from "combinedDictFilePath" assert { type: 'json' }
+import distanceDict from "distanceDictFilePath" assert { type: 'json' }
+
 function initiateMailAssembly(nextByteCombinations) {
     var minPossibilities = {};
     nextByteCombinations.forEach(nextByteCombination => {
@@ -44,10 +51,6 @@ function HookOutput(finalMailArray) {
 }
 
 function convertCodes() {
-var combinedDictFilePath = './MailConvCombinedDict.json'
-var distanceDictFilePath = './MailConvDistanceDict.json'
-var combinedDict = require(combinedDictFilePath);
-var distanceDict = require(distanceDictFilePath);
 var textBox = document.getElementById("Input")
 var input = textBox.value
 if (input.length%2 != 0) {
