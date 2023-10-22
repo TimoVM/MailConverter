@@ -41,7 +41,7 @@ function sanitizeInput() {
 }
 
 function ConvertValueToCoordinates(value) {
-    var xCoordinate = parseInt("0x"+value,16)%16
+    var xCoordinate = (parseInt("0x"+value,16)%16)*8
     var yCoordinate = (parseInt("0x"+value,16)-parseInt("0x"+value,16)%16)/16
     return [xCoordinate,yCoordinate]
 }
