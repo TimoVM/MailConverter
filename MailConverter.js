@@ -139,6 +139,17 @@ function convertCodes() {
 function changeVersion() {
     var selectedLanguage = document.getElementById("language")
     var selectedVersion = document.getElementById("version")
-    selectedVersion.value = selectedLanguage.value
-
+    if (selectedLanguage.value == "Korean") {
+        selectedVersion.value = "GS"
+        if (selectedVersion.length > 1) {
+            selectedVersion.remove(selectedVersion.length-1);
+          }
+    } else {
+        if (selectedVersion.length < 2) {
+            var option = document.createElement("option");
+            option.text = "Korean";
+            option.setAttribute("value","Korean")
+            selectedVersion.add(option);
+          }
+    }
 }

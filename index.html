@@ -14,10 +14,10 @@
         </p>
     </header>
     <div>
-      <section class="gameInfo" onchange="switchVersion()">
+      <span class="gameInfo" onchange="changeVersion()">
         <label for="language">Language: </label>
         <select name="language" id="language">
-          <option value="English">English</option>
+          <option value="English" selected = "selected">English</option>
           <option value="French">French</option>
           <option value="German">German</option>
           <option value="Italian">Italian</option>
@@ -25,17 +25,19 @@
           <option value="Japanese">Japanese</option>
           <option value="Korean">Korean</option>
         </select>
-      </section>
-      <section class="gameInfo">
+      </span>
+      <span class="gameInfo">
         <label for="version">Version: </label>
         <select name="version" id="version">
           <option value="GS">Gold/Silver</option>
           <option value="C">Crystal</option>
         </select>
-      </section>
+      </span>
     </div>
    	<div>
         <textarea id="Input" oninput="sanitizeInput()" rows="16" cols="50"></textarea>
+    </div>
+    <div>
         <button onclick="convertCodes()">Run</button>
     </div>
     <div id="Output">
