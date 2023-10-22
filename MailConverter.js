@@ -39,8 +39,8 @@ function sanitizeInput() {
 }
 
 function ConvertValueToCoordinates(value) {
-    var xCoordinate = (parseInt("0x" + value, 16) % 16) * 8
-    var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16)
+    var xCoordinate = (parseInt("0x" + value, 16) % 16) * 16
+    var yCoordinate = (parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16) * 2
     return [xCoordinate, yCoordinate]
 }
 
@@ -48,12 +48,14 @@ function HookOutput(finalMailArray) {
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
-        var firstRow = finalMail[0].slice(0, 16)
-        var secondRow = finalMail[0].slice(16, 16)
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail " + (idx + 1).toString());
+        var tag2 = document.createElement("h2");
+        var text2 = document.createTextNode("Button presses required: " + finalMail[1].toString() + " | checksum: " + finalMail[2]..toString(16).padStart(2, '0').toUpperCase());
         element.appendChild(tag);
         tag.appendChild(text);
+        element.appendChild(tag2);
+        tag2.appendChild(text2);
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
