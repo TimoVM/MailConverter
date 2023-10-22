@@ -40,17 +40,29 @@ function sanitizeInput() {
     textBox.value = input
 }
 
+function ConvertValueToCoordinates(value) {
+    var xCoordinate = parseInt("0x"+value,16)%16
+    var yCoordinate = (parseInt("0x"+value,16)-parseInt("0x"+value,16)%16)/16
+    return [xCoordinate,yCoordinate]
+}
+
 function HookOutput(finalMailArray) {
     var element = document.getElementById("Output");
+    element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail "+ (idx+1).toString());
-        var child = tag.createElement("p1");
-        var childSpan = child.createElement("span")
-        childSpan.setAttribute("class","gscfont")
-        childSpan.setAttribute("style","background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -0px -0px;")
         tag.appendChild(text);
-        element.appendChild(tag);
+        element.appendChild(tag);        
+        finalMail[0].forEach(value, idx => {
+            var child = document.createElement("p");
+            var childSpan = document.createElement("span")
+            childSpan.setAttribute("class","gscfont")
+            var coordinates = ConvertValueToCoordinates(value)
+            childSpan.setAttribute("style","background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -"+coordinates[0]+"px -"+coordinates[0]+"px;")
+            element.appendChild(child);
+            child.appendChild(childSpan);
+        });    
     });
 }
 
