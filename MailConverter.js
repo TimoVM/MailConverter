@@ -51,8 +51,8 @@ function ConvertValueToCoordinates(value) {
 }
 
 function ConvertChecksumToCoordinates(checksum) {
-    var lowCoordinate = ConvertValueToCoordinates((parseInt("0x" + value, 16) % 16) + 0xF6)
-    var highCoordinate = ConvertValueToCoordinates((parseInt("0x" + value, 16) - parseInt("0x" + value, 16) % 16)/16 + 0xF6)
+    var lowCoordinate = ConvertValueToCoordinates((((checksum % 16) + 0xF6)%256).toString(16))
+    var highCoordinate = ConvertValueToCoordinates((((checksum - checksum % 16)/16 + 0xF6)%256).toString(16))
     return [highCoordinate, lowCoordinate]
 }
 
@@ -128,7 +128,7 @@ function convertCodes() {
                 finalMail = assembledMail[i][0]
             }
         }
-        finalMailArray.push([finalMail, (checksum % 256).toString(16).padStart(2, '0').toUpperCase(), minLinkCost])
+        finalMailArray.push([finalMail, checksum % 256, minLinkCost])
     }
     finalMailArray.forEach(finalMail => {
         console.log(finalMail[0])

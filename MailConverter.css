@@ -13,7 +13,7 @@
 
 .gscfont {
     width: 16px;
-    height: 32px;
+    height: 16px;
     display: inline-block;
     background-size: 256px 256px !important;
     image-rendering: pixelated;
