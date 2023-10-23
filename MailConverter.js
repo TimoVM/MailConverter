@@ -8,7 +8,11 @@ function loadJSONFromURL(url) {
 function initiateMailAssembly(nextByteCombinations) {
     var minPossibilities = {};
     nextByteCombinations.forEach(nextByteCombination => {
-        var startingChar = "00";
+        if (language == "Korean") {
+            var startingChar = "00";
+        } else {
+            var startingChar = "80";
+        }
         var linkCost = distanceDict[startingChar + nextByteCombination[0]] + distanceDict[nextByteCombination[0] + nextByteCombination[1]] + 2;
         if ((!isNaN(linkCost)) && (!(nextByteCombination[1] in minPossibilities) || ((nextByteCombination[1] in minPossibilities) && (linkCost < minPossibilities[nextByteCombination[1]][1])))) {
             minPossibilities[nextByteCombination[1]] = [nextByteCombination, linkCost]
@@ -83,7 +87,7 @@ function HookOutput(finalMailArray) {
             tag2.appendChild(pTag);
             (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
                 var childSpan = document.createElement("span")
-                if (language == Korean) {
+                if (language == "Korean") {
                     childSpan.setAttribute("class", "korgscfont")
                     var coordinates = ConvertValueToKoreanCoordinates(value)
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSMail.png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
@@ -99,8 +103,8 @@ function HookOutput(finalMailArray) {
 }
 
 function convertCodes() {
-    var language = document.getElementById("language").changeVersion
-    var version = document.getElementById("language").changeVersion
+    var language = document.getElementById("language").value
+    var version = document.getElementById("language").value
     combinedDict = loadJSONFromURL('./Dictionaries/MailConvCombinedDict'+language+'.json')
     distanceDict = loadJSONFromURL('./Dictionaries/MailConvDistanceDict'+language+'.json')
     var textBox = document.getElementById("Input")
