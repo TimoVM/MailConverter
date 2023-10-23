@@ -9,6 +9,8 @@ function initiateMailAssembly(nextByteCombinations, language) {
     var minPossibilities = {};
     if (language == "Korean") {
         var startingChar = "00";
+    } else if (language = "Japanese") {
+        var startingChar = "B1";
     } else {
         var startingChar = "80";
     }
