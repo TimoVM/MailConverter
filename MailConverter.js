@@ -117,7 +117,7 @@ function convertCodes() {
     if ((input.length % 32 != 0) && (language == "Korean")) {
         input = input.padEnd(input.length + (32 - input.length % 32), "0")
     } else if (input.length % 32 != 0) {
-        input = input.padEnd(input.length + (32 - input.length % 32), "0")
+        input = input.padEnd(input.length + (32 - input.length % 32), "10")
     }
     console.log(input)
     console.log(input.length)
