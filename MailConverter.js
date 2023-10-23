@@ -120,7 +120,6 @@ function convertCodes() {
         input = input.padEnd(input.length + (32 - input.length % 32), "10")
     }
     console.log(input)
-    console.log(input.length)
     var finalMailArray = []
     for (let index = 0; index < input.length; index += 32) {
         var assembledMail = []
