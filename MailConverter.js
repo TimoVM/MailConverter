@@ -159,8 +159,8 @@ function changeVersion() {
     } else {
         if (selectedVersion.length < 2) {
             var option = document.createElement("option");
-            option.text = "Korean";
-            option.setAttribute("value","Korean")
+            option.text = "Crystal";
+            option.setAttribute("value","C")
             selectedVersion.add(option);
           }
     }
