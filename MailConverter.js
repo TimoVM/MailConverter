@@ -71,11 +71,11 @@ function HookOutput(finalMailArray) {
         var checksumCoordinates = ConvertChecksumToCoordinates(finalMail[1])
         var checksumSpan = document.createElement("span")
         checksumSpan.setAttribute("class", "gscfont")
-        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSChecksum.png) -" + checksumCoordinates[0][0] + "px -" + checksumCoordinates[0][1] + "px;")
+        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[0][0] + "px -" + checksumCoordinates[0][1] + "px;")
         tag2.appendChild(checksumSpan);
         var checksumSpan = document.createElement("span")
         checksumSpan.setAttribute("class", "gscfont")
-        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSChecksum.png) -" + checksumCoordinates[1][0] + "px -" + checksumCoordinates[1][1] + "px;")
+        checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[1][0] + "px -" + checksumCoordinates[1][1] + "px;")
         tag2.appendChild(checksumSpan);
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             var pTag = document.createElement("p")
@@ -83,9 +83,15 @@ function HookOutput(finalMailArray) {
             tag2.appendChild(pTag);
             (finalMail[0].slice(rowCount * 16, (rowCount + 1) * 16)).forEach(value => {
                 var childSpan = document.createElement("span")
-                childSpan.setAttribute("class", "korgscfont")
-                var coordinates = ConvertValueToKoreanCoordinates(value)
-                childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGS.png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
+                if (language == Korean) {
+                    childSpan.setAttribute("class", "korgscfont")
+                    var coordinates = ConvertValueToKoreanCoordinates(value)
+                    childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_KoreanGSMail.png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
+                } else {
+                    childSpan.setAttribute("class", "gscfont")
+                    var coordinates = ConvertValueToCoordinates(value)
+                    checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
+                }
                 pTag.appendChild(childSpan);
                 });
         }
@@ -93,8 +99,10 @@ function HookOutput(finalMailArray) {
 }
 
 function convertCodes() {
-    combinedDict = loadJSONFromURL('./MailConvCombinedDict.json')
-    distanceDict = loadJSONFromURL('./MailConvDistanceDict.json')
+    var language = document.getElementById("language").changeVersion
+    var version = document.getElementById("language").changeVersion
+    combinedDict = loadJSONFromURL('./Dictionaries/MailConvCombinedDict'+language+'.json')
+    distanceDict = loadJSONFromURL('./Dictionaries/MailConvDistanceDict'+language+'.json')
     var textBox = document.getElementById("Input")
     var input = textBox.value
     if (input.length % 2 != 0) {
