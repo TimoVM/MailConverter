@@ -5,14 +5,14 @@ function loadJSONFromURL(url) {
     return JSON.parse(request.responseText);
 }
 
-function initiateMailAssembly(nextByteCombinations) {
+function initiateMailAssembly(nextByteCombinations, language) {
     var minPossibilities = {};
+    if (language == "Korean") {
+        var startingChar = "00";
+    } else {
+        var startingChar = "80";
+    }
     nextByteCombinations.forEach(nextByteCombination => {
-        if (language == "Korean") {
-            var startingChar = "00";
-        } else {
-            var startingChar = "80";
-        }
         var linkCost = distanceDict[startingChar + nextByteCombination[0]] + distanceDict[nextByteCombination[0] + nextByteCombination[1]] + 2;
         if ((!isNaN(linkCost)) && (!(nextByteCombination[1] in minPossibilities) || ((nextByteCombination[1] in minPossibilities) && (linkCost < minPossibilities[nextByteCombination[1]][1])))) {
             minPossibilities[nextByteCombination[1]] = [nextByteCombination, linkCost]
@@ -60,7 +60,7 @@ function ConvertChecksumToCoordinates(checksum) {
     return [highCoordinate, lowCoordinate]
 }
 
-function HookOutput(finalMailArray) {
+function HookOutput(finalMailArray, language, version) {
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
@@ -94,7 +94,7 @@ function HookOutput(finalMailArray) {
                 } else {
                     childSpan.setAttribute("class", "gscfont")
                     var coordinates = ConvertValueToCoordinates(value)
-                    checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
+                    childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
                 pTag.appendChild(childSpan);
                 });
@@ -104,7 +104,7 @@ function HookOutput(finalMailArray) {
 
 function convertCodes() {
     var language = document.getElementById("language").value
-    var version = document.getElementById("language").value
+    var version = document.getElementById("version").value
     combinedDict = loadJSONFromURL('./Dictionaries/MailConvCombinedDict'+language+'.json')
     distanceDict = loadJSONFromURL('./Dictionaries/MailConvDistanceDict'+language+'.json')
     var textBox = document.getElementById("Input")
@@ -126,7 +126,7 @@ function convertCodes() {
             var byteString = mailCode.slice(byteIndex, byteIndex + 2)
             checksum += parseInt(byteString, 16)
             if (byteIndex == 0) {
-                assembledMail = initiateMailAssembly(combinedDict[byteString])
+                assembledMail = initiateMailAssembly(combinedDict[byteString], language)
             } else {
                 assembledMail = iterateMailAssembly(combinedDict[byteString], assembledMail)
             }
@@ -145,7 +145,7 @@ function convertCodes() {
     finalMailArray.forEach(finalMail => {
         console.log(finalMail[0])
     });
-    HookOutput(finalMailArray)
+    HookOutput(finalMailArray, language, version)
 }
 
 function changeVersion() {
