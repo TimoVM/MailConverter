@@ -56,9 +56,14 @@ function ConvertValueToCoordinates(value) {
     return [xCoordinate, yCoordinate]
 }
 
-function ConvertChecksumToCoordinates(checksum) {
-    var lowCoordinate = ConvertValueToCoordinates((((checksum % 16) + 0xF6)%256).toString(16))
-    var highCoordinate = ConvertValueToCoordinates((((checksum - checksum % 16)/16 + 0xF6)%256).toString(16))
+function ConvertChecksumToCoordinates(checksum, language, version) {
+    if (language == "Japanese" && version == "GS") {
+        var lowCoordinate = ConvertValueToCoordinates((((checksum % 16) + 0xF6)%256|0x60).toString(16))
+        var highCoordinate = ConvertValueToCoordinates((((checksum - checksum % 16)/16 + 0xF6)%256|0x60).toString(16))
+    } else {
+        var lowCoordinate = ConvertValueToCoordinates((((checksum % 16) + 0xF6)%256).toString(16))
+        var highCoordinate = ConvertValueToCoordinates((((checksum - checksum % 16)/16 + 0xF6)%256).toString(16))
+    }
     return [highCoordinate, lowCoordinate]
 }
 
@@ -74,7 +79,7 @@ function HookOutput(finalMailArray, language, version) {
         tag.appendChild(text);
         element.appendChild(tag2);
         tag2.appendChild(text2);
-        var checksumCoordinates = ConvertChecksumToCoordinates(finalMail[1])
+        var checksumCoordinates = ConvertChecksumToCoordinates(finalMail[1], language, version)
         var checksumSpan = document.createElement("span")
         checksumSpan.setAttribute("class", "gscfont")
         checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[0][0] + "px -" + checksumCoordinates[0][1] + "px;")
