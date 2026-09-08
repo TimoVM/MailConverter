@@ -130,16 +130,16 @@ function HookOutput(finalMailArray, language, version) {
                 }
                 if (rowCount == 0) {
                     if (language != "Japanese" && language != "Korean" && version == "Crystal" && (value == "72" || value == "73")) {
-                        firstRowOutput += quoteDict[value]
+                        firstRowOutput += quoteDict["0x" + value]
                     } else {
-                        firstRowOutput += textDict[value]
+                        firstRowOutput += textDict["0x" + value]
                     }
                     firstRowOutput += " "
                 } else {
                     if (language != "Japanese" && language != "Korean" && version == "Crystal" && (value == "72" || value == "73")) {
-                        secondRowOutput += quoteDict[value]
+                        secondRowOutput += quoteDict["0x" + value]
                     } else {
-                        secondRowOutput += textDict[value]
+                        secondRowOutput += textDict["0x" + value]
                     }
                     secondRowOutput += " "
                 }
