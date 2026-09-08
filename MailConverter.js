@@ -109,12 +109,10 @@ function HookOutput(finalMailArray, language, version) {
         checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[1][0] + "px -" + checksumCoordinates[1][1] + "px;")
         tag2.appendChild(checksumSpan);
 
-        var textOutput = "";
+        var firstRowOutput = "";
+        var secondRowOutput = "";
 
         for (let rowCount = 0; rowCount < 2; rowCount++) {
-            if (rowCount > 0) {
-                textOutput += "<br>"
-            }
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
             tag2.appendChild(pTag);
@@ -129,14 +127,22 @@ function HookOutput(finalMailArray, language, version) {
                     var coordinates = ConvertValueToCoordinates(value)
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
-                textOutput += textDict["0x" + value]
+                if (rowCount == 0) {
+                    firstRowOutput += textDict["0x" + value]
+                } else {
+                    secondRowOutput += textDict["0x" + value]
+                }
                 pTag.appendChild(childSpan);
                 });
         }
-        var textP = document.createElement("p")
-        var textPText = document.createTextNode(textOutput)
-        element.appendChild(textP)
-        textP.appendChild(textPText)
+        var firstTextP = document.createElement("p")
+        var textPText = document.createTextNode(firstRowOutput)
+        element.appendChild(firstTextP)
+        firstTextP.appendChild(textPText)
+        var secondTextP = document.createElement("p")
+        var textPText = document.createTextNode(secondRowOutput)
+        element.appendChild(secondTextP)
+        secondTextP.appendChild(textPText)
     });
 }
 
