@@ -56,6 +56,12 @@ function ConvertValueToCoordinates(value) {
     return [xCoordinate, yCoordinate]
 }
 
+function ConvertValueToText(value, language, version, quoteDict, textDict) {
+    if (language != "Japanese" && language != "Korean" && version == "Crystal" ) {
+        return quoteDict[value] ?? textDict[value];
+    }
+}
+
 function ConvertChecksumToCoordinates(checksum, language, version) {
     if (language == "Japanese" && version == "GS") {
         var lowCoordinate = ConvertValueToCoordinates((((checksum % 16) + 0xF6)%256|0x60).toString(16))
@@ -87,6 +93,7 @@ function HookOutput(finalMailArray, language, version) {
             textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictKOR.json')
             break;
     }
+    quoteDict = loadJSONFromURL('./Dictionaries/MailConvTextDictC.json')
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
@@ -128,9 +135,9 @@ function HookOutput(finalMailArray, language, version) {
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
                 if (rowCount == 0) {
-                    firstRowOutput += textDict["0x" + value]
+                    firstRowOutput += ConvertValueToText(value, language, version, quoteDict, textDict)
                 } else {
-                    secondRowOutput += textDict["0x" + value]
+                    secondRowOutput += ConvertValueToText(value, language, version, quoteDict, textDict)
                 }
                 pTag.appendChild(childSpan);
                 });
