@@ -129,7 +129,7 @@ function HookOutput(finalMailArray, language, version) {
                     var coordinates = ConvertValueToCoordinates(value)
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
-                textOutput += textDict[value]
+                textOutput += textDict["0x" + value]
                 pTag.appendChild(childSpan);
                 });
         }
