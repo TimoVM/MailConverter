@@ -136,8 +136,10 @@ function HookOutput(finalMailArray, language, version) {
                 }
                 if (rowCount == 0) {
                     firstRowOutput += ConvertValueToText(value, language, version, quoteDict, textDict)
+                    firstRowOutput += " "
                 } else {
                     secondRowOutput += ConvertValueToText(value, language, version, quoteDict, textDict)
+                    secondRowOutput += " "
                 }
                 pTag.appendChild(childSpan);
                 });
