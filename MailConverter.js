@@ -68,13 +68,32 @@ function ConvertChecksumToCoordinates(checksum, language, version) {
 }
 
 function HookOutput(finalMailArray, language, version) {
+    switch (language) {
+        case "English":
+            textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictEN.json')
+            break;
+        case "French":
+        case "German":
+            textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictFRDE.json')
+            break;
+        case "Italian":
+        case "Spanish":
+            textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictITSP.json')
+            break;
+        case "Japanese":
+            textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictJP.json')
+            break;
+        case "Korean":
+            textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictKOR.json')
+            break;
+    }
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
         var tag = document.createElement("h1");
         var text = document.createTextNode("Mail " + (idx + 1).toString());
         var tag2 = document.createElement("p");
-        var text2 = document.createTextNode("Button presses required: " + finalMail[2].toString() + " | checksum: ");
+        var text2 = document.createTextNode("Button presses required: " + finalMail[2].toString() + " | Checksum in text: " + finalMail[1].toString(16).toUpperCase().padStart(2, '0') +" | checksum image: ");
         element.appendChild(tag);
         tag.appendChild(text);
         element.appendChild(tag2);
@@ -84,11 +103,18 @@ function HookOutput(finalMailArray, language, version) {
         checksumSpan.setAttribute("class", "gscfont")
         checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[0][0] + "px -" + checksumCoordinates[0][1] + "px;")
         tag2.appendChild(checksumSpan);
+        
         var checksumSpan = document.createElement("span")
         checksumSpan.setAttribute("class", "gscfont")
         checksumSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + checksumCoordinates[1][0] + "px -" + checksumCoordinates[1][1] + "px;")
         tag2.appendChild(checksumSpan);
+
+        var textOutput = "";
+
         for (let rowCount = 0; rowCount < 2; rowCount++) {
+            if (rowCount > 0) {
+                textOutput += "\n"
+            }
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
             tag2.appendChild(pTag);
@@ -103,9 +129,14 @@ function HookOutput(finalMailArray, language, version) {
                     var coordinates = ConvertValueToCoordinates(value)
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
+                textOutput += textDict[value]
                 pTag.appendChild(childSpan);
                 });
         }
+        var textP = document.createElement("p")
+        var textPText = document.createTextNode(textOutput)
+        element.appendChild(textP)
+        textP.appendChild(textPText)
     });
 }
 
@@ -114,6 +145,7 @@ function convertCodes() {
     var version = document.getElementById("version").value
     combinedDict = loadJSONFromURL('./Dictionaries/MailConvCombinedDict'+language+'.json')
     distanceDict = loadJSONFromURL('./Dictionaries/MailConvDistanceDict'+language+'.json')
+    var textDict
     var textBox = document.getElementById("Input")
     var input = textBox.value
     if (input.length % 2 != 0) {
