@@ -87,7 +87,7 @@ function HookOutput(finalMailArray, language, version) {
             textDict = loadJSONFromURL('./Dictionaries/MailConvTextDictKOR.json')
             break;
     }
-    quoteDict = loadJSONFromURL('./Dictionaries/MailConvTextDictC.json')
+    var quoteDict = loadJSONFromURL('./Dictionaries/MailConvTextDictC.json')
     var element = document.getElementById("Output");
     element.innerHTML = ""
     finalMailArray.forEach((finalMail, idx) => {
@@ -129,14 +129,14 @@ function HookOutput(finalMailArray, language, version) {
                     childSpan.setAttribute("style", "background: url(/MailConverter/CharSets/Characterset_"+language+version+".png) -" + coordinates[0] + "px -" + coordinates[1] + "px;")
                 }
                 if (rowCount == 0) {
-                    if (language != "Japanese" && language != "Korean" && version == "Crystal" && (value == "72" || value == "73")) {
+                    if (language != "Japanese" && language != "Korean" && version == "C" && (value == "72" || value == "73")) {
                         firstRowOutput += quoteDict["0x" + value]
                     } else {
                         firstRowOutput += textDict["0x" + value]
                     }
                     firstRowOutput += " "
                 } else {
-                    if (language != "Japanese" && language != "Korean" && version == "Crystal" && (value == "72" || value == "73")) {
+                    if (language != "Japanese" && language != "Korean" && version == "C" && (value == "72" || value == "73")) {
                         secondRowOutput += quoteDict["0x" + value]
                     } else {
                         secondRowOutput += textDict["0x" + value]
