@@ -113,7 +113,7 @@ function HookOutput(finalMailArray, language, version) {
 
         for (let rowCount = 0; rowCount < 2; rowCount++) {
             if (rowCount > 0) {
-                textOutput += "\n"
+                textOutput += "<br>"
             }
             var pTag = document.createElement("p")
             pTag.setAttribute("class", finalMail[0][rowCount])
