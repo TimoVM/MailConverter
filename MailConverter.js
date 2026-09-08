@@ -221,4 +221,8 @@ function changeVersion() {
             selectedVersion.add(option);
           }
     }
+    document.querySelectorAll(".version-info").forEach(div => {
+        div.style.display = "none";
+    });
+    document.getElementById(selectedLanguage.value + selectedVersion.value).style.display = "block";
 }

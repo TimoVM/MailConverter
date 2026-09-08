@@ -30,7 +30,7 @@
           <option value="Korean">Korean</option>
         </select>
       </span>
-      <span class="gameInfo">
+      <span class="gameInfo" onchange="changeVersion()">
         <label for="version">Version: </label>
         <select name="version" id="version">
           <option value="GS">Gold/Silver</option>
@@ -46,7 +46,213 @@
     </div>
     <div>
       <p>Please note that all blank tiles at the end of a mail need to be entered one by one manually. This will prevent the Mail Writer from producing an incorrect result.</p>
-  </div>
+   </div>
+
+   <div class="version-info" id="EnglishGS">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>* represents a multiplication marker. (uppercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 3rd column from right)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 2nd column from right)</li>
+        <li>『 represents the left quotation symbol (lowercase menu, 5th row, leftmost column)</li>
+        <li>』 represents the right quotation symbol (lowercase menu, 5th row, 2nd column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="EnglishC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>* represents a multiplication marker. (uppercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 3rd column from right)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (lowercase menu, 5th row, leftmost column)</li>
+        <li>” represents the right quotation symbol (lowercase menu, 5th row, 2nd column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="EnglishC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>* represents a multiplication marker. (uppercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 3rd column from right)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (lowercase menu, 5th row, leftmost column)</li>
+        <li>” represents the right quotation symbol (lowercase menu, 5th row, 2nd column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="FrenchGS" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 4th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 4th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 4th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 4th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 4th row, 8th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 4th row, 9th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>” represents the right quotation symbol (uppercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="FrenchC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 4th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 4th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 4th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 4th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 4th row, 8th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 4th row, 9th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>『 represents the left quotation symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>』 represents the right quotation symbol (uppercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="GermanGS" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 3rd column from right)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 2nd column from right)</li>
+        <li>* represents a multiplication marker. (uppercase menu, 5th row, rightmost column)</li>
+        <li>『 represents the left quotation symbol (lowercase menu, 5th row, 3rd column from left)</li>
+        <li>』 represents the right quotation symbol (lowercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="GermanC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>* represents a multiplication marker. (uppercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 3rd column from right)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (lowercase menu, 5th row, leftmost column)</li>
+        <li>” represents the right quotation symbol (lowercase menu, 5th row, 2nd column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="ItalianGS" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 7th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 8th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>『 represents the left quotation symbol (lowercase menu, 5th row, 3rd column from left)</li>
+        <li>』 represents the right quotation symbol (lowercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="ItalianC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 7th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 8th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (lowercase menu, 5th row, 3rd column from left)</li>
+        <li>” represents the right quotation symbol (lowercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="SpanishGS" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 7th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 8th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>『 represents the left quotation symbol (lowercase menu, 5th row, 3rd column from left)</li>
+        <li>』 represents the right quotation symbol (lowercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="SpanishC" style="display:none">
+      <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces, character within nicknames are case sensitive. Please mind the following special characters:
+      <ul>
+        <li>[SPACE] represents a blank space. (lowercase menu, 5th row, rightmost column)</li>
+        <li>pk represents the pk symbol (uppercase menu, 5th row, leftmost column)</li>
+        <li>mn represents the mn symbol (uppercase menu, 5th row, 2nd column from left)</li>
+        <li>po represents the po symbol (uppercase menu, 5th row, 3rd column from left)</li>
+        <li>ké represents the ké symbol (uppercase menu, 5th row, 4th column from left)</li>
+        <li>¥ represents the pokédollar symbol (uppercase menu, 5th row, 7th column from left)</li>
+        <li>… represents the ellipsis symbol (uppercase menu, 5th row, 8th column from left)</li>
+        <li>* represents a multiplication marker. (lowercase menu, 3rd row, 2nd column from right)</li>
+        <li>“ represents the left quotation symbol (lowercase menu, 5th row, 3rd column from left)</li>
+        <li>” represents the right quotation symbol (lowercase menu, 5th row, 4th column from left)</li>
+      </ul>
+      </p>
+    </div>
+
+    <div class="version-info" id="JapaneseGS" style="display:none">
+    <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces.
+    </p>
+    </div>
+
+    <div class="version-info" id="JapaneseC" style="display:none">
+    <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces.
+    </p>
+    </div>
+
+    <div class="version-info" id="KoreanGS" style="display:none">
+    <p>Underneath each mail you can find a copy represented in flat text. Each character that needs to be entered is separated by blank spaces.
+    </p>
+    </div>
+
+
+    
+
     <div id="Output">
 
     </div>
